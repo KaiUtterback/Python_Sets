@@ -27,12 +27,68 @@ competitor_routes = {"JFK", "CDG", "LHR", "BKK"}
 
 def find_same_flights():
     same_flights = our_routes.intersection(competitor_routes)
-    print(same_flights)
+    print(f"Both airlines share these flights:")
+    for flight in same_flights:
+        print(f" - {flight}")
 
 def find_unique_flights():
     unique_flights = our_routes.difference(competitor_routes)
-    print(unique_flights)
+    print(f"Our unique flights are:")
+    for flight in unique_flights:
+        print(f" - {flight}")
 
 def find_neither():
-    pass
+    unique_to_our_airline = our_routes.difference(competitor_routes)
+    print("Destinations unique to our airline:")
+    for flight in sorted(unique_to_our_airline): 
+        print(f" - {flight}")
+    
+    unique_to_competitor = competitor_routes.difference(our_routes)
+    print("\nDestinations unique to competitor's airline:")
+    for flight in sorted(unique_to_competitor):
+        print(f" - {flight}")
 
+
+def display_all_flights():
+    print("Flights from Our Company:")
+    for flight in sorted(our_routes):  
+        print(f" - {flight}")
+    
+    print("\nFlights from Competitor's Company:")
+    for flight in sorted(competitor_routes):
+        print(f" - {flight}")    
+
+def run_airline():
+    print("\nHello and welcome to the airline comparison program!")
+    while True:
+        print("\n------------------------------")
+        print("Please choose an option:")
+        print("1. Find Flights Shared by both Airlines")
+        print("2. Look at Flights Unique to Our Airline")
+        print("3. Find Flights Unshared by Both")
+        print("4. Display All Flights from Both Companies")
+        print("5. Exit")
+        print("------------------------------")
+        
+        selection = input("Enter Selection: ")
+
+        if selection == '1':
+            print("\nFinding Flights Shared by Both Airlines...")
+            find_same_flights()
+        elif selection == '2':
+            print("\nLooking at Flights Unique to Our Airline...")
+            find_unique_flights()
+        elif selection == '3':
+            print("\nFinding Flights Unshared by Both Airlines...")
+            find_neither()
+        elif selection == '4':
+            print("\nDisplaying All Flights from Both Companies...")
+            display_all_flights()
+        elif selection == '5':
+            print("\nThank you for using the airline comparison program!")
+            break
+        else:
+            print("Improper Selection. Try again.")
+        print("\n------------------------------")
+
+run_airline()
