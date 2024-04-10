@@ -115,3 +115,80 @@ customer_ids = ["C001", "C002", "C003", "C002", "C001", "C004"]
 
 sorted_unique_customer_ids = sorted(set(customer_ids))
 print("Unique Customer IDs:", sorted_unique_customer_ids)
+
+# Problem 3
+
+''' Playlist Duplication Check
+Create a Python script that takes multiple playlist sets and checks if any playlist is a duplicate of another (i.e., contains the same set of songs).
+
+Example Code:
+
+playlist1 = {"Song A", "Song B", "Song C"}
+playlist2 = {"Song D", "Song E", "Song F"}
+playlist3 = {"Song A", "Song B", "Song C"}
+
+playlists = [playlist1, playlist2, playlist3]
+
+Expected Outcome:
+A confirmation of whether there are duplicate playlists, such as Duplicate playlists found: True.
+
+'''
+print()
+
+def find_common_songs(playlist1, playlist2, playlist3):
+    try:
+        common_songs = playlist1.intersection(playlist2, playlist3)
+        if common_songs: 
+            print("Common Songs Across All Playlists:", common_songs)
+        else:
+            print("No common songs across all playlists.")
+    except Exception as e:
+        print(f"An error occurred while finding common songs: {e}")
+
+def find_unique_songs(playlist1, playlist2, playlist3):
+    try:
+        unique_to_playlist1 = playlist1 - (playlist2.union(playlist3))
+        unique_to_playlist2 = playlist2 - (playlist1.union(playlist3))
+        unique_to_playlist3 = playlist3 - (playlist1.union(playlist2))
+
+        if unique_to_playlist1:
+            print("Unique Songs in Playlist 1:", unique_to_playlist1)
+        else:
+            print("No unique songs in Playlist 1.")
+
+        if unique_to_playlist2:
+            print("Unique Songs in Playlist 2:", unique_to_playlist2)
+        else:
+            print("No unique songs in Playlist 2.")
+
+        if unique_to_playlist3:
+            print("Unique Songs in Playlist 3:", unique_to_playlist3)
+        else:
+            print("No unique songs in Playlist 3.")
+    except Exception as e:
+        print(f"An error occurred while finding unique songs: {e}")
+
+def check_for_duplicate_playlists(playlist1, playlist2, playlist3):
+    playlists = {'Playlist 1': playlist1, 'Playlist 2': playlist2, 'Playlist 3': playlist3}
+    duplicates = []
+
+    playlist_names = list(playlists.keys())
+    for i in range(len(playlist_names)):
+        for j in range(i + 1, len(playlist_names)):
+            if playlists[playlist_names[i]] == playlists[playlist_names[j]]:
+                duplicates.append((playlist_names[i], playlist_names[j]))
+
+    if duplicates:
+        for dup in duplicates:
+            print(f"{dup[0]} and {dup[1]} are duplicates.")
+    else:
+        print("No duplicate playlists found.")
+
+playlist1 = {"Song A", "Song B", "Song C"}
+playlist2 = {"Song D", "Song E", "Song F"}
+playlist3 = {"Song A", "Song B", "Song C"}  
+
+
+find_common_songs(playlist1, playlist2, playlist3)
+find_unique_songs(playlist1, playlist2, playlist3)
+check_for_duplicate_playlists(playlist1, playlist2, playlist3)
