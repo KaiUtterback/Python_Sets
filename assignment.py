@@ -21,3 +21,18 @@ our_routes = {"LAX", "JFK", "CDG", "DXB"}
 competitor_routes = {"JFK", "CDG", "LHR", "BKK"}
 
 '''
+
+our_routes = {"LAX", "JFK", "CDG", "DXB"}
+competitor_routes = {"JFK", "CDG", "LHR", "BKK"}
+
+def find_same_flights():
+    same_flights = our_routes.intersection(competitor_routes)
+    print(same_flights)
+
+def find_unique_flights():
+    unique_flights = our_routes.difference(competitor_routes)
+    print(unique_flights)
+
+def find_neither():
+    pass
+
